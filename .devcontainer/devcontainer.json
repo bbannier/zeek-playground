@@ -14,7 +14,10 @@
 		"vscode": {
 			"extensions": [
 				"bbannier.zeek-language-server"
-			]
+			],
+			"settings": {
+				"editor.formatOnSave": true
+			}
 		}
 	},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
