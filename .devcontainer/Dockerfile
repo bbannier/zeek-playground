@@ -1,5 +1,5 @@
 # [Choice] Debian OS version (use bullseye on local arm64/Apple Silicon): buster, bullseye
-ARG VARIANT="buster"
+ARG VARIANT="bullseye"
 FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
