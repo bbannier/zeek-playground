@@ -11,6 +11,7 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
+				"bbannier.spicy",
 				"bbannier.zeek-language-server"
 			],
 			"settings": {
