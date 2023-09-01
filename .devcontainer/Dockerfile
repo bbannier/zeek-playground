@@ -12,7 +12,8 @@ RUN echo 'deb http://download.opensuse.org/repositories/security:/zeek/Debian_11
     && apt-get -y install --no-install-recommends zeek \
     && apt-get -y install python3-pip \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && [ -L /opt/zeek/share/zeek/tests ] || ln -s /opt/zeek/share/btest/data /opt/zeek/share/zeek/tests # Workaround for zeek/zeek#3266.
 
 ENV PATH=/opt/zeek/bin:$PATH
 
