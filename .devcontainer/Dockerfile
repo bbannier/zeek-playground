@@ -1,21 +1,36 @@
-# [Choice] Debian OS version (use bullseye on local arm64/Apple Silicon): buster, bullseye
-ARG VARIANT="bullseye"
-FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
+FROM zeek/zeek:6.1.0 as dist
+
+FROM mcr.microsoft.com/vscode/devcontainers/base:1-bookworm
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-# hadolint ignore=DL3008,DL3015
-RUN echo 'deb http://download.opensuse.org/repositories/security:/zeek/Debian_11/ /' | tee /etc/apt/sources.list.d/security:zeek.list \
-    && curl -fsSL https://download.opensuse.org/repositories/security:zeek/Debian_11/Release.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/security_zeek.gpg > /dev/null \
-    && apt-get update \
-    && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends zeek \
-    && apt-get -y install python3-pip \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && [ -L /opt/zeek/share/zeek/tests ] || ln -s /opt/zeek/share/btest/data /opt/zeek/share/zeek/tests # Workaround for zeek/zeek#3266.
+# hadolint ignore=DL3008
+RUN apt-get -q update \
+ && apt-get install -q -y --no-install-recommends \
+     ca-certificates \
+     cmake \
+     libmaxminddb0 \
+     libnode108 \
+     libpython3.11 \
+     libpcap0.8 \
+     libpcap0.8-dev \
+     libssl3 \
+     libuv1 \
+     libz1 \
+     pipx \
+     python3-git \
+     python3-minimal \
+     python3-dev \
+     python3-semantic-version \
+     python3-websocket \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
-ENV PATH=/opt/zeek/bin:$PATH
+# Copy over Zeek installation from build
+COPY --from=dist /usr/local/zeek /usr/local/zeek
+ENV PATH "/usr/local/zeek/bin:${PATH}"
+ENV PYTHONPATH "/usr/local/zeek/lib/zeek/python:${PYTHONPATH}"
 
 # hadolint ignore=DL3013
-RUN pip install --no-cache-dir zeekscript
+RUN pipx install zeekscript
+ENV PATH "/root/.local/bin:${PATH}"
