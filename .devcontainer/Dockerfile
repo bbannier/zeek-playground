@@ -1,4 +1,4 @@
-FROM zeek/zeek:6.2.1 as dist
+FROM zeek/zeek:6.2.1 AS dist
 
 FROM mcr.microsoft.com/vscode/devcontainers/base:1-bookworm
 
@@ -28,8 +28,8 @@ RUN apt-get -q update \
 
 # Copy over Zeek installation from build
 COPY --from=dist /usr/local/zeek /usr/local/zeek
-ENV PATH "/usr/local/zeek/bin:${PATH}"
-ENV PYTHONPATH "/usr/local/zeek/lib/zeek/python:${PYTHONPATH}"
+ENV PATH="/usr/local/zeek/bin:${PATH}"
+ENV PYTHONPATH="/usr/local/zeek/lib/zeek/python:${PYTHONPATH}"
 
 # hadolint ignore=DL3013
 RUN pipx install zeekscript
