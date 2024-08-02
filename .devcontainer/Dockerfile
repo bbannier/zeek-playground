@@ -1,4 +1,4 @@
-FROM zeek/zeek:6.2.1 AS dist
+FROM zeek/zeek:7.0 AS dist
 
 FROM mcr.microsoft.com/vscode/devcontainers/base:1-bookworm
 
