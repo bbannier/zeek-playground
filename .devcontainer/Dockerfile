@@ -1,4 +1,4 @@
-FROM zeek/zeek:7.0 AS dist
+FROM zeek/zeek:7.1 AS dist
 
 FROM mcr.microsoft.com/vscode/devcontainers/base:1-bookworm
 
@@ -17,6 +17,7 @@ RUN apt-get -q update \
      libssl3 \
      libuv1 \
      libz1 \
+     libzmq5 \
      pipx \
      python3-git \
      python3-minimal \
