@@ -4,21 +4,21 @@ repos:
     hooks:
       - id: gitlint
   - repo: https://github.com/crate-ci/typos
-    rev: v1.23.3
+    rev: v1.29.4
     hooks:
       - id: typos
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-yaml
       - id: check-added-large-files
   - repo: https://github.com/google/yamlfmt
-    rev: v0.13.0
+    rev: v0.14.0
     hooks:
       - id: yamlfmt
   - repo: https://github.com/hadolint/hadolint
-    rev: v2.13.0-beta
+    rev: v2.13.1-beta
     hooks:
       - id: hadolint
