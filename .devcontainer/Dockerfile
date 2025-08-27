@@ -12,11 +12,6 @@ RUN apt-get -q update \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-# # Copy over Zeek installation from build
-# COPY --from=dist /usr/local/zeek /usr/local/zeek
-# ENV PATH="/usr/local/zeek/bin:${PATH}"
-# ENV PYTHONPATH="/usr/local/zeek/lib/zeek/python"
-
 ENV PATH="/root/.local/bin:${PATH}"
 # hadolint ignore=DL3013
 RUN pipx install zeekscript
