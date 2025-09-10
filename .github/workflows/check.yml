@@ -1,0 +1,17 @@
+name: check
+on:
+  pull_request:
+  push:
+    branches:
+      - "main"
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+      - name: Install dependencies
+        run: |
+          wget -qO /usr/local/bin/hadolint https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64
+          chmod a+x /usr/local/bin/hadolint
+      - uses: pre-commit/action@v3.0.1
