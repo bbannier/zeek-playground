@@ -6,6 +6,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get -q update \
  && apt-get install -q -y --no-install-recommends \
      cmake \
+     make \
      g++ \
      libpcap0.8-dev \
      pipx \
