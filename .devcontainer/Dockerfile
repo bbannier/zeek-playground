@@ -9,6 +9,7 @@ RUN apt-get -q update \
      make \
      g++ \
      libpcap0.8-dev \
+     zlib1g-dev \
      pipx \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
