@@ -1,4 +1,4 @@
-FROM zeek/zeek:8.2 AS dist
+FROM zeek/zeek:9.0 AS dist
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
